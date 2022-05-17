@@ -11,7 +11,6 @@ const app = Vue.createApp({
   },
   methods: {
     attackMonster() {
-      console.log(this.monsterHealth);
       const attackDamage = getRandomValue(5, 12);
       if (this.monsterHealth > attackDamage > 0)
         this.monsterHealth -= attackDamage;
@@ -22,6 +21,14 @@ const app = Vue.createApp({
       const attackDamage = getRandomValue(8, 15);
       if (this.playerHealth > attackDamage) this.playerHealth -= attackDamage;
       else this.playerHealth = 0;
+    },
+  },
+  computed: {
+    monsterHealthBarStyles() {
+      return { width: `${this.monsterHealth}%` };
+    },
+    playerHealthBarStyles() {
+      return { width: `${this.playerHealth}%` };
     },
   },
 });
